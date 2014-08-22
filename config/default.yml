@@ -1,17 +1,75 @@
 recipes:                                       # Configs are parsed and every list is appended to each other, chef handles order and de-duplication
     global:                                    # Recipes mentioned under "global" are installed for all operating systems (we used to support linux, and may do so in the future)
         - applications::create_var_chef_cache
+    
     mac_os_x:                                  # Recipes mentioned under "mac_os_x" are installed on OSX and OSX Server
-        - homebrewalt::default                 # Installs homebrew and homebrew cask and installs all apps mentioned in the homebrewalt:apps and homebrewalt:cask_apps attributes
-        - nodejs::default                      # Installs nodejs and installs all nodejs packages mentioned in the nodejs:apps attribute
+        - homebrewalt::default 
+        - applications::sublime_text_3
+        - applications::mysql
+        - applications::gnu-tar   
+
+        - osxdefaults::dock_minimize_to_application 
+        - osxdefaults::dock_show_indicator_lights_for_open_applications_in_the_dock
+        - osxdefaults::dock_position_the_dock_on_the_left_side
+        - osxdefaults::disable_gatekeeper
+        - osxdefaults::tap_to_click
+        - osxdefaults::do_not_show_dashboard_as_a_space
+        - osxdefaults::prevent_time_machine_from_prompting_to_use_new_hard_drives_as_backup_volume
+        - osxdefaults::finder_allow_text_selection_in_quick_look
+        - osxdefaults::finder_display_full_path
+        - osxdefaults::finder_use_column_view_in_all_finder_windows_by_default
+        - osxdefaults::finder_new_finder_windows_shows_homefolder
+        - osxdefaults::finder_automatically_open_a_new_finder_window_when_a_volume_is_mounted
+        - osxdefaults::finder_disable_the_warning_before_emptying_the_trash
+        - osxdefaults::finder_disable_the_warning_when_changing_a_file_extension
+        - osxdefaults::finder_search_the_current_folder_by_default
+        - osxdefaults::finder_unhide_home                                      # Installs homebrew and homebrew cask and installs all apps mentioned in the homebrewalt:apps and homebrewalt:cask_apps attributes                    # Installs nodejs and installs all nodejs packages mentioned in the nodejs:apps attribute
+
 attributes:
     homebrewalt:
         apps:
             - git
+            - git-extras
+            - wget
+            - pwgen
+            - xmlstarlet
+            - htop-osx
+            - git-flow
+            - siege
+            - watch
+            - rsync
+            - rkhunter
+            - openssl
+            - ruby 
+            - python3
+
         cask_apps:
+            - coconutbattery
+            - vlc
+            - appcleaner
+            - keka
+            - dropbox
+            - evernote
+            - alfred
+            - totalfinder
+            - spotify
+            - bartender
             - google-chrome
+            - xamarin
+            - java
+            - sequel-pro
+            - sourcetree
+            - skype
+            - skim
+            - sdformatter
+            - caffeine
+            - fantastical
+            - iterm2
+            - istat-menus
+            - intellij-idea
+            - jdownloader
+            - google-hangouts
+            - slack
+            - p4merge
         cask_fonts:   
             - inconsolata
-    nodejs:
-        apps:
-            - bower
